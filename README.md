@@ -14,7 +14,7 @@ python -m venv .venv
 
 ![Создание .venv](venv.png)
 
-### 3. Активировано окружение
+### 3.1 Активировано окружение
 В PowerShell не получилось — ошибка `running scripts is disabled on this system`.
 ![Неудачная активация .venv](activate_1.png)  
 Перешла в `cmd` и выполнила:
@@ -24,6 +24,23 @@ python -m venv .venv
 В приглашении появилось `(.venv)` — значит, активация сработала.
 
 ![Активация .venv](activate_2.png)
+
+### 3.2 Проверка на то, что активировано окружение
+
+Признаки активного `.venv`:
+
+- префикс `(.venv)` в приглашении терминала;
+- `where python` первой строкой показывает `.venv\Scripts\python.exe`;
+
+Выполнила проверку в cmd:
+
+```
+where python
+```
+
+Результат:
+
+![Проверка активации .venv](isactive.png)
 
 ### 4. Обновила pip до последней версии
 ```
@@ -71,17 +88,4 @@ git commit -m "Initial project setup"
 git remote add origin https://github.com/KolosovaElena-Predan/python_my_project.git
 git branch -M main
 git push -u origin main
-```
-
-## 10. Структура проекта
-
-```
-my_project/
-├── .venv/
-├── .gitignore
-├── README.md
-├── requirements_ML.txt
-├── requirements_service.txt
-├── requirements_jupyter.txt
-├── скриншоты...
 ```
