@@ -16,7 +16,7 @@ python -m venv .venv
 
 ### 3. Активировано окружение
 В PowerShell не получилось — ошибка `running scripts is disabled on this system`.
-![Неудачная активация .venv](activate_1.png)
+![Неудачная активация .venv](activate_1.png)  
 Перешла в `cmd` и выполнила:
 ```
 .venv\Scripts\activate.bat
