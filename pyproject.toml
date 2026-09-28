@@ -1,0 +1,31 @@
+[project]
+name = "my-project"
+version = "0.1.0"
+description = "Учебный проект: FastAPI + ML + Jupyter"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Колосова Елена" }
+]
+
+dependencies = [
+    # ML
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "seaborn",
+    "plotly",
+    # service
+    "fastapi",
+    "uvicorn[standard]",
+    "gradio",
+    # jupyter
+    "jupyter",
+    "ipython",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
