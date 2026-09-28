@@ -148,7 +148,7 @@ uvicorn main_FastAPI:app --reload
 
 Вывод в терминале:
 
-![FastAPI /ping](fastapi.png)
+![FastAPI /ping](5.png)
 
 Проверка в браузере: `http://127.0.0.1:8000/ping` → `{"status":"ok"}`
 
@@ -189,8 +189,6 @@ uv pip install -r requirements_ML.txt
 uv pip install -r requirements_service.txt
 uv pip install -r requirements_jupyter.txt
 ```
-
-Пример установки ML-пакетов: `uv` разрешил и поставил 21 пакет за ~1.8 с.
 
 ![Установка через uv](2.png)
 
@@ -238,28 +236,7 @@ dev = [
 uv sync
 ```
 
-`uv sync` сам создаёт `.venv`, читает `pyproject.toml`, ставит пакеты и генерирует `uv.lock` с точными версиями.
-
-![pyproject.toml](pyproject.png)
-
-### Шпаргалка по `pyproject.toml`
-
-| Команда | Что делает |
-|---|---|
-| `uv init` | Создать заготовку `pyproject.toml` |
-| `uv add <pkg>` | Добавить зависимость и установить |
-| `uv add 'uvicorn[standard]'` | Добавить с extras |
-| `uv add --dev <pkg>` | Добавить dev-зависимость |
-| `uv remove <pkg>` | Удалить зависимость |
-| `uv sync` | Установить всё из `pyproject.toml` |
-| `uv sync --extra dev` | Установить с dev-группой |
-| `uv lock --upgrade` | Обновить все пакеты |
-| `uv tree` | Показать дерево зависимостей |
-| `uv run <cmd>` | Запустить команду в `.venv` |
-| `uv build` | Собрать пакет |
-| `uv publish` | Опубликовать на PyPI |
-| `pip install -e .` | Установить через pip |
-| `pip install -e ".[dev]"` | Установить с dev-группой |
+`uv sync` сам создаёт `.venv`, читает `pyproject.toml`, ставит пакеты и генерирует `uv.lock` с точными версиями
 
 **Синтаксис зависимостей в `pyproject.toml`:**
 
@@ -273,16 +250,5 @@ dependencies = [
     "pkg; python_version<'3.12'",  # маркер окружения
 ]
 ```
-
-**Сравнение с `requirements*.txt`:**
-
-| | `requirements*.txt` | `pyproject.toml` |
-|---|---|---|
-| Формат | простой список | TOML |
-| Метаданные проекта | нет | есть |
-| Группы зависимостей | отдельные файлы | `[project.optional-dependencies]` |
-| Сборка пакета | нет | `uv build` |
-| Публикация на PyPI | нет | `uv publish` |
-| Точные версии | вручную | `uv.lock` автоматически |
 
 **Итог:** один `pyproject.toml` заменяет три файла `requirements_*.txt`, а `uv sync` — одну команду вместо трёх `pip install -r`.
