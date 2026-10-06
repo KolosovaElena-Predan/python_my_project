@@ -238,6 +238,12 @@ uv sync
 
 `uv sync` сам создаёт `.venv`, читает `pyproject.toml`, ставит пакеты и генерирует `uv.lock` с точными версиями
 
+
+## Разбор `pyproject.toml`
+
+- **`[project]`** — метаданные: имя, версия, описание, `requires-python`, авторы.
+- **`dependencies`** — обязательные зависимости, ставятся всегда (ML, FastAPI, Jupyter).
+
 **Синтаксис зависимостей в `pyproject.toml`:**
 
 ```toml
@@ -250,5 +256,14 @@ dependencies = [
     "pkg; python_version<'3.12'",  # маркер окружения
 ]
 ```
+
+- **`[project.optional-dependencies]`** — необязательные (extra) зависимости, ставятся только по запросу:
+
+```toml
+[project.optional-dependencies]
+dev = ["pytest", "ruff"] 
+```
+
+`dev` — имя extra-группы (можно несколько: `docs`, `gpu`). Установка: `pip install ".[dev]"` или `uv sync --extra dev`. Extra-группы позволяют не ставить лишние пакеты там, где они не нужны, и разделяют зависимости по назначению: основные — всегда, extra — по необходимости.
 
 **Итог:** один `pyproject.toml` заменяет три файла `requirements_*.txt`, а `uv sync` — одну команду вместо трёх `pip install -r`.
